@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: backend-quality-dashboard
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: backend-quality-dashboard
+    app.kubernetes.io/part-of: mc-quality-dashboard
+  name: backend-quality-dashboard
+spec:
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: backend-quality-dashboard
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: backend-quality-dashboard
+    spec:
+      containers:
+      - image: quay.io/redhat-appstudio-qe/test-images:multi-comp-e2e-pswx-feb501cc71d44f3ea6c1e63d4864b339
+        imagePullPolicy: Always
+        name: container-image
+        ports:
+        - containerPort: 8081
+        resources: {}
+status: {}
